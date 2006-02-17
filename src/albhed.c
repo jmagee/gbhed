@@ -25,7 +25,7 @@
 #include <stdlib.h>
 
 void get_input(vector_string *text) {
-	char temp_char;
+	signed char temp_char;
 
 	while((int)(temp_char = (char)getchar()) != EOF) {
 		append_char(text, temp_char);
