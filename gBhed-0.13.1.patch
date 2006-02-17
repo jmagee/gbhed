@@ -1,0 +1,106 @@
+diff -aur gBhed-0.13/ChangeLog gBhed-0.13.1/ChangeLog
+--- gBhed-0.13/ChangeLog	2004-05-07 01:03:52.000000000 -0500
++++ gBhed-0.13.1/ChangeLog	2004-07-18 21:34:17.000000000 -0500
+@@ -23,6 +23,10 @@
+ 
+ abtranslate:
+ 
++version .04:
++	2004-07-18
++	-added more support for special characters, ie ~, <, >, {, }, etc.
++
+ version .03:
+ 	2004-04-24
+ 	-added numbers, line return, and some other special characters
+diff -aur gBhed-0.13/configure gBhed-0.13.1/configure
+--- gBhed-0.13/configure	2004-05-07 01:04:35.000000000 -0500
++++ gBhed-0.13.1/configure	2004-07-18 21:35:34.000000000 -0500
+@@ -1253,7 +1253,7 @@
+ 
+ 
+ PACKAGE=gBhed
+-VERSION=0.13
++VERSION=0.13.1
+ 
+ am__api_version="1.7"
+ ac_aux_dir=
+diff -aur gBhed-0.13/configure.ac gBhed-0.13.1/configure.ac
+--- gBhed-0.13/configure.ac	2004-05-07 01:04:30.000000000 -0500
++++ gBhed-0.13.1/configure.ac	2004-07-18 21:32:45.000000000 -0500
+@@ -2,7 +2,7 @@
+ AM_CONFIG_HEADER(config.h)
+ 
+ PACKAGE=gBhed
+-VERSION=0.13
++VERSION=0.13.1
+ 
+ AM_INIT_AUTOMAKE($PACKAGE, $VERSION)
+ 
+diff -aur gBhed-0.13/src/albhed.cpp gBhed-0.13.1/src/albhed.cpp
+--- gBhed-0.13/src/albhed.cpp	2004-04-24 14:32:23.000000000 -0500
++++ gBhed-0.13.1/src/albhed.cpp	2004-07-18 21:31:49.000000000 -0500
+@@ -28,7 +28,7 @@
+ 
+ char englishLetterToAlbhed(char letter, char tableEnglish[], char tableAlbhed[]) {
+ 	int i;
+-	for(i =  0; i < 72; i++) {  
++	for(i =  0; i < 82; i++) {  
+ 
+ 		if(letter == tableEnglish[i]) {
+ 			return tableAlbhed[i];
+@@ -39,7 +39,7 @@
+ char AlbhedLetterToEnglish(char letter, char tableEnglish[], char tableAlbhed[]) {
+ 	//works just like englishLetterToAlbhed
+ 	int i;
+-	for (i = 0; i  < 72; i++) {
++	for (i = 0; i  < 82; i++) {
+ 
+ 		if(letter == tableAlbhed[i]) {
+ 			return tableEnglish[i];
+@@ -50,7 +50,7 @@
+ string AlbhedLetterToPhonetics(char letter, char tableAlbhed[], string tablePhonetics[]) {
+ 	//maps the albhed character the phoentic string
+ 	int i;
+-	for (i = 0; i < 72; i++) {
++	for (i = 0; i < 82; i++) {
+ 		if(letter == tableAlbhed[i]) {
+ 			return tablePhonetics[i];
+ 		}
+@@ -68,22 +68,22 @@
+ 				'n','o','p','q','r','s','t','u','v','w','x','y','z',
+ 				'A','B','C','D','E','F','G','H','I','J','K','L','M',
+ 				'N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+-				',','!','?','"','.','[',']','\'',' ','\n','1','2','3','4','5',
+-				'6','7','8','9','-'};
++				',','!','?','"','.','[',']','\'',' ','\n','\r','1','2','3','4','5',
++				'6','7','8','9','-',';','{','}',':','(',')','<','>','~'};
+ 
+ 	char tableAlbhed[]  = {'y','p','l','t','a','v','k','r','e','z','g','m','s',
+ 				'h','u','b','x','n','c','d','i','j','f','q','o','w',
+ 				'Y','P','L','T','A','V','K','R','E','Z','G','M','S',
+ 				'H','U','B','X','N','C','D','I','J','F','Q','O','W',
+-				',','!','?','"','.','[',']','\'',' ','\n','1','2','3','4','5',
+-				'6','7','8','9','-'};
++				',','!','?','"','.','[',']','\'',' ','\n','\r','1','2','3','4','5',
++				'6','7','8','9','-',';','{','}',':','(',')','<','>','~'};
+ 
+ 	string tablePhonetics[] = {"ae-","pe-","lu-","te-","ah-","fu-","kuk-","ra-","eay-","z-","ge-","m-","see-",
+ 			"ha-","oo-","bae-","x-","n-","ku-","de-","ee-","jae-","fe-","q-","oh-","w-",
+ 			"AE-","PE-","LU-","TE-","AH-","FU-","KUK-","RA-","EAY-","Z-","GE-","M-","SEE-",
+ 			"HA-","OO-","BAE-","X-","N-","KU-","DE-","EE-","JAE-","FE-","Q-","OH-","W-",
+-				",","!","?","\"",".","[","]","\'"," ","\n","1","2","3","4","5",
+-			"6","7","8","9","-"};
++				",","!","?","\"",".","[","]","\'"," ","\n","\r","1","2","3","4","5",
++			"6","7","8","9","-",";","{","}",":","(",")","<",">","~"};
+ 
+ 	if(languageMode == 0) {
+ 
+@@ -169,7 +169,7 @@
+ }
+ 
+ void printVersion(void) {
+-	cout << "abtranslate 0.03" << endl;
++	cout << "abtranslate 0.04" << endl;
+ }
+ 
+ void printInvalid(void) {

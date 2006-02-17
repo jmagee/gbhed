@@ -1,0 +1,55 @@
+.\" ghbed man page
+.\" copyright (c) 2004 Josh Magee <liquidchile@liquichile.net>
+.\"
+.\" Permission is granted to copy, distribute and/or modify this document
+.\" under the terms of the GNU Free Documentation License, Version 1.2
+.\" or any later version published by the Free Software Foundation;
+.\" with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+.\" Texts.  A copy of the license is included in the section entitled "GNU
+.\" Free Documentation License".
+.TH gBhed 1 "2005-06-12"
+.SH NAME
+gBhed \- GTK+ Al Bhed translator
+.SH SYNOPSIS
+.B gbhed
+.SH DESCRIPTION
+.B gBhed 
+is a GUI frotend for abtranslate, an Al Bhed translator.  It is written using GTK+.  Al Bhed is a cipher from the game Final Fantasy X and is usually referred to as a language.  gBhed can translate from English to Al Bhed, from Al Bhed to English, and from Al Bhed to phonetics.  The phonetics could be useful for those involved in cosplay, although there is a great deal of debate on exactly how to speak Al Bhed.  Generally proper nouns are not translated.  Putting a word in brackets [ ] will prevent the contents from being translated.
+.SH FILES
+.P
+.I @prefix@/bin/gbhed
+
+.I @prefix@/share/pixmaps/about_rikku.jpg
+
+.I @prefix@/share/pixmaps/rikku_icon.jpg
+
+.I @prefix@/share/pixmaps/rikku_icon.xpm
+
+.I @prefix@/share/pixmaps/rikku_icon2.xpm
+
+.I @prefix@/share/pixmaps/rikkubackground.jpg
+
+.I @prefix@/share/pixmaps/gbhed64.png
+
+.I @prefix@/share/pixmaps/gbhed48.png
+.SH BUGS
+Please report any bugs you may encounter to <liquidchile@liquidchile.net>
+.SH SEE ALSO
+.BR abtranslate (1)
+.SH LICENSE
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+\fBWITHOUT ANY WARRANTY\fR; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU 
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License 
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple PLace, Suite 330, Boston, MA  02111-1307  USA
+.SH AUTHOR
+.nf
+Josh Magee <liquidchile@liquidchile.net>

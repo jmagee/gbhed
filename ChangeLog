@@ -1,0 +1,97 @@
+gbhed:
+
+version .16:
+	2005-06-12
+	* Improved configure script
+	* Directly fork(), pipe(), and exec() translation subprocess,
+	  instead of using popen(), which caused side effects. popen() forks
+	  and invokes the shell, then runs the command, which resulted
+	  in some undesired side effects (and is insignificantly less
+	  effecient)
+	* Escape characters no longer required for quotes and shell operators
+	* New line characters now behave as expected
+	* Removed arbitrary limit on buffer size
+	* Rounded icons
+
+version .15:
+	2005-02-17
+	* compilation of gbhed can now be disabled by
+	  passing --disable-gbhed to configure
+	* minor cleanup
+
+version .14:
+	2004-08-02
+	* user alert when attempting to translate too much text
+	* minor cleanup
+	* man page should now show correct location of files
+
+version .13:
+	2004-05-07
+	* text buffer increased to a thousand characters
+	* todo: alert user when buffer limit has been reached to avoid
+	* truncation or possible crash
+
+version .12:
+	* fixed bug that caused an error to occure when translating an
+	  apostrophe
+	* some general code cleanup
+
+version .11:
+	2004-4-24
+	* added bindings so enter/return fires off translation
+	* added man pages
+
+version .10:
+	2004-04-23
+	* Initial Release
+
+
+abtranslate:
+
+version .08
+	2006-06-12
+	* Better character support
+	* Improved configure script
+
+version .07
+	2005-02-17
+	* Large rewrite.  Important changes to note:
+	* Now written in C
+	* Dynamic handling of text removes arbitrary limit
+	  on amount of text that can be translated
+	* Reads from standard input if no text is provided upon
+	  the command line.  This also allows for input redirection
+	  and piping (ex: abtranslate -e < text_file or
+	  cat text_file | abtranslate -e)
+	* Improved command line options
+	* Compilation of abtranlated can now be disabled by passing
+	  --disable-abtranslate to configure
+
+version .06:
+	2004-08-16
+	* Fixed Segmentation errors on gcc 3.4 ppc
+
+version .05:
+	2004-08-02
+	* added yet more support for special characters  (damn, so many special
+	  characters)
+	* very minor cleanups
+	* man page should now show correct location of files
+
+version .04:
+	2004-07-18
+	* added more support for special characters, ie ~, <, >, {, }, etc.
+
+version .03:
+	2004-04-24
+	* added numbers, line return, and some other special characters
+	* added man pages
+
+version .02:
+	2004-04-23
+	* now can cipher from al bhed to phonetics
+
+version .01:
+	2004-04-15
+	* Initial Release
+

@@ -1,0 +1,72 @@
+.\" abtranslate man page
+.\" copyright (c) 2004-2005 Josh Magee <liquidchile@liquichile.net>
+.\"
+.\" Permission is granted to copy, distribute and/or modify this document
+.\" under the terms of the GNU Free Documentation License, Version 1.2
+.\" or any later version published by the Free Software Foundation;
+.\" with no Invariant Sections, no Front-Cover Texts, and no Back-Cover
+.\" Texts.  A copy of the license is included in the section entitled "GNU
+.\" Free Documentation License".
+.TH abtranslate 1 "2005-02-17"
+.SH NAME
+abtranslate \- Al Bhed translator
+.SH SYNOPSIS
+.B abtranslate [options] text
+.SH DESCRIPTION
+.B abtranslate 
+is an Al Bhed translator.  It translates from English to Al Bhed, Al Bhed to English, and Al Bhed to phonetics.  Al Bhed is a fictional cipher from the game Final Fantasy X.  There is also a GUI frotend for abtranslate called gBhed.
+.SH OPTIONS
+Command Line Options
+.TP
+.B -e, --english
+Translate from English to Albhed.
+.TP
+.B -a, --albhed
+Translate from Al Bhed to English.
+.TP
+.B -p,  --phonetics
+Translate from Phonetics to Al Bhed.
+.TP
+.B -h, --help
+Display help and exit.
+.TP
+.B -version, --version,
+Display version information.
+.TP
+.B --author
+Display author information
+.TP
+.B --license
+Display license information
+.SH EXAMPLES
+Example usage:
+.TP
+.B abtranslate -e Hello world!
+.TP
+If no text is specified upon the command line, abtranslate \
+will read from stdin untill EOF is encountered (usually sent \
+with ctrl-d)
+.SH FILES
+.P
+\fI@prefix@/bin/abtranslate
+.SH BUGS
+Please report any bugs you may encounter to <liquidchile@liquidchile.net>
+.SH SEE ALSO
+.BR gbhed (1)
+.SH LICENSE
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but
+\fBWITHOUT ANY WARRANTY\fR; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU 
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License 
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple PLace, Suite 330, Boston, MA  02111-1307  USA
+.SH AUTHOR
+.nf
+Josh Magee <liquidchile@liquidchile.net>
