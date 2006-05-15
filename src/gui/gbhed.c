@@ -33,14 +33,14 @@
 
 static gboolean destroy();
 static GtkWidget *xpm_label_box(gchar*, gchar*);
-void print_gstring(GtkWidget*, gpointer*); 
-char* get_gstring(gpointer);
-void translate(GtkWidget*, GtkTextBuffer*[]);
-void toggle_state(GtkWidget*, int); 
-int make_menus(GtkWidget*, GtkWidget*); 
-void about_message(GtkWidget*);
-void help_message(GtkWidget*);
-void buffer_message(GtkWidget*);
+static void print_gstring(GtkWidget*, gpointer*); 
+static char* get_gstring(gpointer);
+static void translate(GtkWidget*, GtkTextBuffer*[]);
+static void toggle_state(GtkWidget*, int); 
+static int make_menus(GtkWidget*, GtkWidget*); 
+static void about_message(GtkWidget*);
+static void help_message(GtkWidget*);
+static void buffer_message(GtkWidget*);
 static gboolean entry_key_press(GtkWidget*,GdkEventKey*,gpointer);
 
 int mode;	/*Global translation flag*/
@@ -193,7 +193,7 @@ static GtkWidget *xpm_label_box(gchar *xpm_filename, gchar *label_text) {
 	return box;
 }
 
-void print_gstring(GtkWidget *widget, gpointer *buffer) {
+static void print_gstring(GtkWidget *widget, gpointer *buffer) {
 	/*print the buffer*/
 	char *mybuffer;
 
@@ -204,7 +204,7 @@ void print_gstring(GtkWidget *widget, gpointer *buffer) {
 	g_print("\n");
 }
 
-char* get_gstring(gpointer buffer) {
+static char* get_gstring(gpointer buffer) {
 	/*Returns the contents of the buffer*/
 	char *mybuffer;
 
@@ -215,20 +215,13 @@ char* get_gstring(gpointer buffer) {
 	return mybuffer;
 }
 
-void translate(GtkWidget *widget, GtkTextBuffer *buffer[]) {
+static void translate(GtkWidget *widget, GtkTextBuffer *buffer[]) {
 	/*Processes the string translation process*/
 	GString *text2;
 	char *buf;
 
 	text2 = (GString*)get_gstring(buffer[0]);
 
-	/* No need for buffer size limit anymore
-	if(gtk_text_buffer_get_char_count(*buffer) > 600) {
-		g_print("Buffer is too big!\n");
-		buffer_message(NULL);
-		return;
-	}*/
-	
 	/*fork a translation*/
 	buf = translation_fork((gchar*)text2, strlen((gchar*)text2), mode);
 
@@ -238,7 +231,7 @@ void translate(GtkWidget *widget, GtkTextBuffer *buffer[]) {
 	free(buf);
 }
 
-void toggle_state(GtkWidget *widget, int toggle) {
+static void toggle_state(GtkWidget *widget, int toggle) {
 	/*sets the translation mode based on the toggle state*/
 	if(toggle == 1) {
 		if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget))) {
@@ -266,7 +259,7 @@ void toggle_state(GtkWidget *widget, int toggle) {
 	}
 }
 
-int make_menus(GtkWidget *window, GtkWidget *HBlockX) {
+static int make_menus(GtkWidget *window, GtkWidget *HBlockX) {
 	/*creates the menubar*/
 	GtkItemFactoryEntry menu_items[] = {
 		{"/_File",	NULL,	NULL, 0,	"<Branch>"},
@@ -303,7 +296,7 @@ int make_menus(GtkWidget *window, GtkWidget *HBlockX) {
 	return 0;
 }
 
-void about_message(GtkWidget *window) {
+static void about_message(GtkWidget *window) {
 	/*pop up an about dialogue*/
 	GtkWidget *dialog;
 	GtkWidget *label;
@@ -357,13 +350,7 @@ void about_message(GtkWidget *window) {
 	gtk_label_set_markup(GTK_LABEL(about_text9), "<span size='x-small'>Lubonekrd (l) Square Enix Co., Ltd.</span>");
 	gtk_label_set_markup(GTK_LABEL(about_text10), "<span size='x-small'>\nDrec bnuknys ec eh hu fyo yvvemeydat fedr un ahtuncat po</span>");
 	gtk_label_set_markup(GTK_LABEL(about_text11), "<span size='x-small'>Square Enix, Final Fantasy, un yhodrehk amca.</span>");
-/*
-	gtk_label_set_markup(about_text8, "<span size='x-small'>\nFinal Fantasy, Rikku, and the Al Bhed Language: </span>");
-	gtk_label_set_markup(about_text9, "<span size='x-small'>Copyright (c) Square Enix Co., Ltd.</span>");
-	gtk_label_set_markup(about_text10, "<span size='x-small'>\nThis program is in no way affiliated with or endorsed by</span>");
-	gtk_label_set_markup(about_text11, "<span size='x-small'>Square Enix, Final Fantasy, or anything else.</span>");
 
-*/
 	VBox = gtk_vbox_new(FALSE, 1);
 	gtk_box_pack_start(GTK_BOX(VBox), label, TRUE, TRUE, 0);
 	gtk_box_pack_start(GTK_BOX(VBox), about_rikku, TRUE, TRUE, 0);
@@ -386,7 +373,7 @@ void about_message(GtkWidget *window) {
 	gtk_widget_show_all(dialog);
 }
 
-void help_message(GtkWidget *window) {
+static void help_message(GtkWidget *window) {
 	/*displays help...this should be expanded to be a better help dialogue
 	 * but it'll do  for now ;-)*/
 	GtkWidget *dialog;
@@ -406,7 +393,7 @@ void help_message(GtkWidget *window) {
 	gtk_widget_show_all(dialog);
 }
 
-void buffer_message(GtkWidget *window) {
+static void buffer_message(GtkWidget *window) {
 	/*Error message to warn that warn user they have entered too much text
 	 * into the buffer*/
 
@@ -426,7 +413,6 @@ void buffer_message(GtkWidget *window) {
 	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), warn_text);
 	gtk_widget_show_all(dialog);
 }
-
 
 static gboolean entry_key_press(GtkWidget *entry, GdkEventKey *event, gpointer data) {
 	/*if someone presses enter, it is the same as clicking translate*/
