@@ -31,11 +31,19 @@
 char* translation_fork(const char *string, int n, const int mode) {
 	if(string != NULL) {
 		char *buffer;
+		int len;
 		pid_t pid;
 		int pipe_out[2];
 		int pipe_in[2];
 
-		buffer = (char*)calloc((size_t)n, sizeof(char*));
+		/* Phoentics mode requires a larger n, as 1 character
+		 *  yields 3 after translation */
+		if(mode ==3)
+			len = n * 3;
+		else
+			len = n;
+
+		buffer = (char*)calloc((size_t)len, sizeof(char*));
 		if(buffer == NULL) { 
 			g_print("Error allocation emory in translation_fork");
 			exit(EXIT_FAILURE);
@@ -91,7 +99,7 @@ char* translation_fork(const char *string, int n, const int mode) {
 				close(pipe_in[1]);
 				wait(NULL);
 
-				while(read(pipe_out[0], (void*)buffer, (size_t)n) == -1) {
+				while(read(pipe_out[0], (void*)buffer, (size_t)len) == -1) {
 					if(errno == EINTR) continue;
 					else {
 						g_print("Error reading from pipe.");
@@ -111,6 +119,11 @@ char* translation_fork(const char *string, int n, const int mode) {
 char* t_error(void) {
 	/* Return a translation error string */
 	char *error = (char*)calloc(19, sizeof(char));
+	if(!error) {
+		g_print("Error allocation emory in t_error()");
+		exit(EXIT_FAILURE);
+	}
+
 	strcpy(error, "Error translating.\n");
 
 	return error;
