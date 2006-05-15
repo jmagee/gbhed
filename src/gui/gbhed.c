@@ -234,23 +234,17 @@ static void toggle_state(GtkWidget *widget, int toggle) {
 	/*sets the translation mode based on the toggle state*/
 	if(toggle == 1) {
 		if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget))) {
-			g_print("toggling 1\n");
 			mode = 1;
-			g_print("%i\n", mode);
 		}
 
 	}else if(toggle == 2) {
 		if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget))) {
-			g_print("toggling 2\n");
 			mode = 2;
-			g_print("%i\n", mode);
 		}
 
 	}else if(toggle == 3) {
 		if(gtk_toggle_button_get_active(GTK_TOGGLE_BUTTON(widget))) {
-			g_print("toggling 3\n");
 			mode = 3;
-			g_print("%i\n", mode);
 		}
 	
 	}else{
