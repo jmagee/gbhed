@@ -40,7 +40,6 @@ static void toggle_state(GtkWidget*, int);
 static int make_menus(GtkWidget*, GtkWidget*); 
 static void about_message(GtkWidget*);
 static void help_message(GtkWidget*);
-static void buffer_message(GtkWidget*);
 static gboolean entry_key_press(GtkWidget*,GdkEventKey*,gpointer);
 
 int mode;	/*Global translation flag*/
@@ -390,27 +389,6 @@ static void help_message(GtkWidget *window) {
 	help_text = gtk_label_new(" Al Bhed is technically a cipher, but throughout Final\n Fantasy it is referred to as a laguange.  Generally\n proper nouns are not translated.  Any text you do not\n want translated should be put into square [brackets].\n");
 	g_signal_connect_swapped(GTK_OBJECT(dialog), "response", G_CALLBACK(gtk_widget_destroy),						GTK_OBJECT(dialog));
 	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), help_text);
-	gtk_widget_show_all(dialog);
-}
-
-static void buffer_message(GtkWidget *window) {
-	/*Error message to warn that warn user they have entered too much text
-	 * into the buffer*/
-
-	GtkWidget *dialog;
-	GtkWidget *warn_text;
-	GdkPixbuf *icon;
-
-	dialog = gtk_dialog_new_with_buttons("Error", GTK_WINDOW(window),
-						GTK_DIALOG_DESTROY_WITH_PARENT,
-						GTK_STOCK_OK, GTK_RESPONSE_NONE, NULL);
-
-	icon = gdk_pixbuf_new_from_file(PIXMAPS_DIR "/rikku_icon.xpm", NULL);
-	gtk_window_set_icon(GTK_WINDOW(dialog), icon);	
-
-	warn_text = gtk_label_new("You have entered to much text.  Try again. ");
-	g_signal_connect_swapped(GTK_OBJECT(dialog), "response", G_CALLBACK(gtk_widget_destroy),						GTK_OBJECT(dialog));
-	gtk_container_add(GTK_CONTAINER(GTK_DIALOG(dialog)->vbox), warn_text);
 	gtk_widget_show_all(dialog);
 }
 
