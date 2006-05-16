@@ -29,7 +29,7 @@
 #include <stdio.h>
 #include <gdk/gdkkeysyms.h>
 
-#define GBHED_VERSION "gBhed 0.17-pre1"
+#define GBHED_VERSION "gBhed 0.17"
 
 static gboolean destroy();
 static GtkWidget *xpm_label_box(gchar*, gchar*);

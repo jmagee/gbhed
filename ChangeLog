@@ -1,5 +1,13 @@
 gbhed:
 
+version .17:
+	2006-05-15
+	* Added desktop entry
+	* Less gui verboseness
+	* Removed unnecessary and unused text overflow warning box
+	* Migrated all gbhed functions to static
+	* Fixed phonetic translation problem in GUI
+
 version .16:
 	2005-06-12
 	* Improved configure script
@@ -94,4 +102,3 @@ version .02:
 version .01:
 	2004-04-15
 	* Initial Release
-

@@ -1,10 +1,10 @@
 dnl AC_INIT(src/gui/gbhed.c, src/abtranslate.c, src/albhed.c, src/albhed.h,  \
 dnl	src/vector_string.h, src/vector_string.c, cipher_tables.h)
-AC_INIT([gBhed], [0.16], [liquidchile@liquidchile.net])
+AC_INIT([gBhed], [0.17], [liquidchile@liquidchile.net])
 AM_CONFIG_HEADER(config.h)
 
 PACKAGE=gBhed
-VERSION=0.17-pre1
+VERSION=0.17
 
 AM_INIT_AUTOMAKE($PACKAGE, $VERSION)
 
