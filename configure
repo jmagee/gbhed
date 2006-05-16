@@ -1317,7 +1317,7 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 PACKAGE=gBhed
-VERSION=0.16
+VERSION=0.17-pre1
 
 am__api_version="1.7"
 ac_aux_dir=

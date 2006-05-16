@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=0.17
+Type=Application
+Categories=Application;Games;
+Encoding=UTF-8
+Name=gBhed
+Comment=Al Bhed Translator
+Exec=gbhed
+Icon=gbhed48.png
