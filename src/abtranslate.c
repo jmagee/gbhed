@@ -19,85 +19,84 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  */
 
+#include "albhed.h"
+#include "vector_string.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "albhed.h"
-#include "vector_string.h"
 
 int main(int argc, char *argv[]) {
-	
-	register int i;
-	unsigned char language_mode = 0;	
-	vector_string untranslated;
-	vector_string translated;
-	
-	untranslated.string = NULL;
-	untranslated.used = 0;
-	untranslated.capacity = 0;
 
-	if(argc <= 1) {
-		printInvalid();
-	
-	}else {
-		for(i = 1; i < argc; i++) {
-			if(i == 1) {
-				/*Examine the command line switch*/
-				if(strcmp(argv[i], "-e") == 0 ||
-						strcmp(argv[i], "--english") == 0) {
-					/*English*/
-					language_mode = ENGLISH;
+  register int i;
+  unsigned char language_mode = 0;
+  vector_string untranslated;
+  vector_string translated;
 
-				}else if(strcmp(argv[i], "-a") == 0 ||
-						strcmp(argv[i], "--albhed") == 0) {
-					/*Al Bhed*/
-					language_mode = ALBHED;
+  untranslated.string = NULL;
+  untranslated.used = 0;
+  untranslated.capacity = 0;
 
-				}else if(strcmp(argv[i], "-p") == 0 ||
-						strcmp(argv[i], "--phonetics") == 0) {
-					/*Phonetics*/
-					language_mode = PHONETICS;
+  if (argc <= 1) {
+    printInvalid();
 
-				}else if(strcmp(argv[i], "-h") == 0 ||
-						strcmp(argv[i], "--help") == 0) {
-					printHelp();
-				
-				}else if(strcmp(argv[i], "-v") == 0 ||
-						strcmp(argv[i], "--version") == 0) {
-					printVersion();
+  } else {
+    for (i = 1; i < argc; i++) {
+      if (i == 1) {
+        /*Examine the command line switch*/
+        if (strcmp(argv[i], "-e") == 0 || strcmp(argv[i], "--english") == 0) {
+          /*English*/
+          language_mode = ENGLISH;
 
-				}else if(strcmp(argv[i], "--authors") == 0 ||
-						strcmp(argv[i], "--author") == 0) {
-					printAuthor();
+        } else if (strcmp(argv[i], "-a") == 0 ||
+                   strcmp(argv[i], "--albhed") == 0) {
+          /*Al Bhed*/
+          language_mode = ALBHED;
 
-				}else if(strcmp(argv[i], "--license") == 0) {
-					printLicense();
+        } else if (strcmp(argv[i], "-p") == 0 ||
+                   strcmp(argv[i], "--phonetics") == 0) {
+          /*Phonetics*/
+          language_mode = PHONETICS;
 
-				}else {
-					printInvalid();
-				}
+        } else if (strcmp(argv[i], "-h") == 0 ||
+                   strcmp(argv[i], "--help") == 0) {
+          printHelp();
 
-				if(argc == 2) {
-					/*Only one argument means we are reading
-					 * from stdin instead of command line.*/
-					get_input(&untranslated);
-					break;
-				}
+        } else if (strcmp(argv[i], "-v") == 0 ||
+                   strcmp(argv[i], "--version") == 0) {
+          printVersion();
 
-			}else {
-				append(&untranslated, argv[i]);
-				append(&untranslated, " ");
-				/* Add a newline character at the end of text
-				 * from command line for proper outputing*/
-				if(i == argc-1) append(&untranslated, "\n");
-			}
-				
-		}
-		translated = processString(&untranslated, language_mode);
-		display(&translated);
+        } else if (strcmp(argv[i], "--authors") == 0 ||
+                   strcmp(argv[i], "--author") == 0) {
+          printAuthor();
 
-		clean(&untranslated);
-		clean(&translated);
-	}
-	return 0;
+        } else if (strcmp(argv[i], "--license") == 0) {
+          printLicense();
+
+        } else {
+          printInvalid();
+        }
+
+        if (argc == 2) {
+          /*Only one argument means we are reading
+           * from stdin instead of command line.*/
+          get_input(&untranslated);
+          break;
+        }
+
+      } else {
+        append(&untranslated, argv[i]);
+        append(&untranslated, " ");
+        /* Add a newline character at the end of text
+         * from command line for proper outputing*/
+        if (i == argc - 1)
+          append(&untranslated, "\n");
+      }
+    }
+    translated = processString(&untranslated, language_mode);
+    display(&translated);
+
+    clean(&untranslated);
+    clean(&translated);
+  }
+  return 0;
 }

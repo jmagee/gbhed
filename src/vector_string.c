@@ -32,57 +32,57 @@
 #define INCREASE 50
 
 void append(vector_string *vs, const char *text) {
-	register unsigned int i;
+  register unsigned int i;
 
-	if(vs->used + strlen(text) >= vs->capacity) {
-		/*Need to resize*/
-		resize(vs);
-	}
+  if (vs->used + strlen(text) >= vs->capacity) {
+    /*Need to resize*/
+    resize(vs);
+  }
 
-	for(i = 0; (size_t)i < strlen(text); i++)
-		vs->string[vs->used++] = text[i];
+  for (i = 0; (size_t)i < strlen(text); i++)
+    vs->string[vs->used++] = text[i];
 }
 
 void append_char(vector_string *vs, const char letter) {
-	/*Wrapper for append()*/
-	char temp_char[2];
-	temp_char[0] = letter;
-	temp_char[1] = '\0';
+  /*Wrapper for append()*/
+  char temp_char[2];
+  temp_char[0] = letter;
+  temp_char[1] = '\0';
 
-	append(vs, temp_char);
+  append(vs, temp_char);
 }
 
 void resize(vector_string *vs) {
-	register unsigned int i;
-	char *temp;
+  register unsigned int i;
+  char *temp;
 
-	vs->capacity = vs->capacity + INCREASE;
+  vs->capacity = vs->capacity + INCREASE;
 
-	temp = (char*)calloc((size_t)vs->capacity, sizeof(char));
-	if(temp == NULL) {
-		fprintf(stderr, "Error allocating memory.  Cowardly bailing out.\n");
-		free(vs->string);
-		exit(EXIT_FAILURE);
-	}
+  temp = (char *)calloc((size_t)vs->capacity, sizeof(char));
+  if (temp == NULL) {
+    fprintf(stderr, "Error allocating memory.  Cowardly bailing out.\n");
+    free(vs->string);
+    exit(EXIT_FAILURE);
+  }
 
-	for(i = 0; i < vs->used; i++) 
-		temp[i] = vs->string[i];
+  for (i = 0; i < vs->used; i++)
+    temp[i] = vs->string[i];
 
-	free(vs->string);
+  free(vs->string);
 
-	vs->string = temp;
+  vs->string = temp;
 }
 
 void display(const vector_string *vs) {
-	register unsigned int i;
+  register unsigned int i;
 
-	for(i = 0; i < vs->used; i++) {
-		if(printf("%c", vs->string[i]) < 0)
-			fprintf(stderr, "Outputting Error.\n");
-	}
+  for (i = 0; i < vs->used; i++) {
+    if (printf("%c", vs->string[i]) < 0)
+      fprintf(stderr, "Outputting Error.\n");
+  }
 }
 
 void clean(vector_string *vs) {
-	free(vs->string);
-	vs->string = NULL;
+  free(vs->string);
+  vs->string = NULL;
 }

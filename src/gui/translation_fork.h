@@ -2,7 +2,7 @@
  *  -al bhed cipher program
  *  -translation command forker
  *
- * copyright (c) 2005 Josh Magee <liquidchile@liquichile.net> 
+ * copyright (c) 2005 Josh Magee <liquidchile@liquichile.net>
  *
  *  This program is free software; you can redistribute it and/or
  *  modify it under the terms of the GNU General Public License
@@ -24,15 +24,15 @@
 
 #define ABTRANSLATE "abtranslate"
 
-char* translation_fork(const char *string, int n, const int mode);
+char *translation_fork(const char *string, int n, const int mode);
 /* Purpose: Fork a proccess to translate.
- * Pre: string is the string to be translated of length n.  Mode corrosponds to a
- * translation mode (currently either 1, 2, or 3).
- * Post: Return a dyanically allocated translated string.
- *  The size of the returned string wi either be n for modes 1 and 2,
- *  or 3*n for modes 3. (As a phonetic translation requires more characters. */
+ * Pre: string is the string to be translated of length n.  Mode corrosponds to
+ * a translation mode (currently either 1, 2, or 3). Post: Return a dyanically
+ * allocated translated string. The size of the returned string wi either be n
+ * for modes 1 and 2, or 3*n for modes 3. (As a phonetic translation requires
+ * more characters. */
 
-char* t_error(void);
+char *t_error(void);
 /*  Purpose: Generate an error string.
  *  Pre: None.
  *  Post: Returns a dynamically allocated error string.*/
