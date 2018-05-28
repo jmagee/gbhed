@@ -25,23 +25,20 @@
 
 #include "vector_string.h"
 
-#define ENGLISH (unsigned char)0
-#define ALBHED (unsigned char)1
-#define PHONETICS (unsigned char)2
+typedef enum {
+  ENGLISH,
+  ALBHED,
+  PHONETICS,
+} LanguageMode;
 
-#define ON (unsigned char)1
-#define OFF (unsigned char)0
+typedef enum {
+  OFF = 0,
+  ON,
+} Toggle;
 
 #define PROGRAM "abtranslate"
 #define VERSION 0.08
 #define AUTHORS "Josh Magee <liquidchile@liquidchile.net>"
-
-void get_input(vector_string *);
-/* Purpose: Fetch and store input from stdin.
- * Pre-conditions: vector_string must be an initilaized (but not
- * necessarily empty) vector_string struct.
- * Post-conditions:  vector_string will contain obtained user input
- * and attributes will be updated appropriately.*/
 
 char english_to_albhed(const char letter);
 /* Purpose: Translate an english character to an al bhed
@@ -62,14 +59,11 @@ char *albhed_to_phonetics(const char letter);
  * Post-conditions: Returns a pointer to the corrosponding phonetic
  * string.  Returns NULL on error.*/
 
-vector_string processString(const vector_string *, unsigned char mode);
-/* Purpose:  Translate a vector_string according to mode.
- * Pre-conditions: vector_string should contain the string to be translated.
- * mode is a a macro of ENGLISH, ALBHED, or PHONETICS.
- * Post-conditions: Returns a vector_string containing the translated string.
- * Note, the caller is responsible for freeing the dynamic memory allocated
- * within the vector string with clean(vector_string*) or
- * free(vector_string.string). */
+void processBuffer(const vector_string *text, LanguageMode language_mode);
+/* Purpose:  Translate a vector_string according to the mode. */
+
+void processStdin(LanguageMode language_mode);
+/* Purpose:  Translate a standard input according to mode. */
 
 void printHelp(void);
 /* Purpose: Print help.

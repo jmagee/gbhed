@@ -28,9 +28,8 @@
 int main(int argc, char *argv[]) {
 
   register int i;
-  unsigned char language_mode = 0;
+  LanguageMode language_mode = ENGLISH;
   vector_string untranslated;
-  vector_string translated;
 
   untranslated.string = NULL;
   untranslated.used = 0;
@@ -77,9 +76,9 @@ int main(int argc, char *argv[]) {
         }
 
         if (argc == 2) {
-          /*Only one argument means we are reading
+          /* Only one argument means we are reading
            * from stdin instead of command line.*/
-          get_input(&untranslated);
+          processStdin(language_mode);
           break;
         }
 
@@ -92,11 +91,10 @@ int main(int argc, char *argv[]) {
           append(&untranslated, "\n");
       }
     }
-    translated = processString(&untranslated, language_mode);
-    display(&translated);
+
+    processBuffer(&untranslated, language_mode);
 
     clean(&untranslated);
-    clean(&translated);
   }
   return 0;
 }

@@ -24,14 +24,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void get_input(vector_string *text) {
-  signed char temp_char;
-
-  while ((int)(temp_char = (char)getchar()) != EOF) {
-    append_char(text, temp_char);
-  }
-}
-
 char english_to_albhed(const char letter) {
   register int i;
   for (i = 0; i < MAX_CHARS; i++) {
@@ -59,66 +51,44 @@ char *albhed_to_phonetics(const char letter) {
   return NULL;
 }
 
-vector_string processString(const vector_string *text,
-                            unsigned char language_mode) {
+static Toggle processChar(char input, Toggle trans_toggle, LanguageMode mode) {
+  if (input == '[')
+    trans_toggle = OFF;
+  else if (input == ']')
+    trans_toggle = ON;
 
-  register unsigned int i;
-  unsigned char trans_toggle = ON;
-  vector_string translated_text;
-  translated_text.string = NULL;
-  translated_text.used = 0;
-  translated_text.capacity = 0;
-
-  if (language_mode == ENGLISH) {
-    /*Tranlsate from ENGLISH to AL BHED*/
-    for (i = 0; i < text->used; i++) {
-      if (text->string[i] == '[')
-        trans_toggle = OFF;
-      if (text->string[i] == ']')
-        trans_toggle = ON;
-
-      if (trans_toggle == ON) {
-        append_char(&translated_text, english_to_albhed(text->string[i]));
-      } else {
-        append_char(&translated_text, text->string[i]);
-      }
+  if (trans_toggle == ON) {
+    switch (mode) {
+    case ENGLISH:
+      printf("%c", english_to_albhed(input));
+      break;
+    case ALBHED:
+      printf("%c", albhed_to_english(input));
+      break;
+    case PHONETICS:
+      printf("%s", albhed_to_phonetics(input));
+      break;
     }
-  } else if (language_mode == ALBHED) {
-    /*Translate from AL BHED to ENGLISH*/
-    for (i = 0; i < text->used; i++) {
-      if (text->string[i] == '[')
-        trans_toggle = OFF;
-      if (text->string[i] == ']')
-        trans_toggle = ON;
-
-      if (trans_toggle == ON) {
-        append_char(&translated_text, albhed_to_english(text->string[i]));
-      } else {
-        append_char(&translated_text, text->string[i]);
-      }
-    }
-  } else if (language_mode == PHONETICS) {
-    /*Translate from AL BHED to PHONETICS*/
-    for (i = 0; i < text->used; i++) {
-      if (text->string[i] == '[')
-        trans_toggle = OFF;
-      if (text->string[i] == ']')
-        trans_toggle = ON;
-
-      if (trans_toggle == ON) {
-        append(&translated_text, albhed_to_phonetics(text->string[i]));
-      } else {
-        append_char(&translated_text, text->string[i]);
-      }
-    }
-  } else { /*Error*/
-    fprintf(stderr, "Invalid Translating mode error.\n");
-    fprintf(stderr, "This is most likely a bug, please report it to: ");
-    fprintf(stderr, "<liquidchile@liquidchile.net>\n");
-    exit(EXIT_FAILURE);
+  } else {
+    printf("%c", input);
   }
+  return trans_toggle;
+}
 
-  return translated_text;
+void processBuffer(const vector_string *text, LanguageMode language_mode) {
+  unsigned int i;
+  Toggle trans_toggle = ON;
+
+  for (i = 0; i < text->used; ++i)
+    trans_toggle = processChar(text->string[i], trans_toggle, language_mode);
+}
+
+void processStdin(LanguageMode language_mode) {
+  Toggle trans_toggle = ON;
+  signed char input;
+
+  while ((int)(input = (char)getchar()) != EOF)
+    trans_toggle = processChar(input, trans_toggle, language_mode);
 }
 
 void printHelp(void) {
