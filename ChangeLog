@@ -1,5 +1,9 @@
 gbhed:
 
+version .18:
+	2018-05-27
+	* Tidy up, no functional changes.
+
 version .17:
 	2006-05-15
 	* Added desktop entry
@@ -56,12 +60,16 @@ version .10:
 
 abtranslate:
 
-version .08
+version .09:
+	2018-05-27
+	* Improved performance.
+
+version .08:
 	2006-06-12
 	* Better character support
 	* Improved configure script
 
-version .07
+version .07:
 	2005-02-17
 	* Large rewrite.  Important changes to note:
 	* Now written in C

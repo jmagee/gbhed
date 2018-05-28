@@ -28,7 +28,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define GBHED_VERSION "gBhed 0.17"
+#define GBHED_VERSION "gBhed 0.18"
 
 static gboolean destroy();
 static GtkWidget *xpm_label_box(gchar *, gchar *);
@@ -337,8 +337,8 @@ static void about_message(GtkWidget *window) {
   about_text3 = gtk_label_new(NULL);
   about_text4 = gtk_label_new(NULL);
   about_text5 = gtk_label_new(NULL);
-  about_text6 = gtk_label_new("\nCopyright (c) 2004-2005 Josh Magee");
-  about_text7 = gtk_label_new("<liquidchile@liquidchile.net>");
+  about_text6 = gtk_label_new("\nCopyright (c) 2004-2005, 2018 Josh Magee");
+  about_text7 = gtk_label_new("<magee.joshua@yahoo.com>");
   about_text8 = gtk_label_new(NULL);
   about_text9 = gtk_label_new(NULL);
   about_text10 = gtk_label_new(NULL);

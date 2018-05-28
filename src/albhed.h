@@ -37,8 +37,8 @@ typedef enum {
 } Toggle;
 
 #define PROGRAM "abtranslate"
-#define VERSION 0.08
-#define AUTHORS "Josh Magee <liquidchile@liquidchile.net>"
+#define VERSION 0.09
+#define AUTHORS "Josh Magee <magee.joshua@yahoo.com>"
 
 char english_to_albhed(const char letter);
 /* Purpose: Translate an english character to an al bhed

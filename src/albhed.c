@@ -120,7 +120,7 @@ void printAuthor(void) {
 }
 
 void printLicense(void) {
-  printf("copyright(c) 2004-2006 Josh Magee <liquidchile@liquidchile.net>\n\n");
+  printf("copyright(c) 2004-2006, 2018 Josh Magee <magee.joshua@yahoo.com>\n\n");
   printf("This program is free software; you can redistribute it and/or\n");
   printf("modify it under the terms of the GNU General Public License\n");
   printf("as published by the Free Software Foundation; either version 2\n");
