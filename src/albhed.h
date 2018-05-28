@@ -53,7 +53,7 @@ char albhed_to_english(const char letter);
  * Post-conditions: Returns the corrosponding English character.
  * Returns EOF on error.*/
 
-char *albhed_to_phonetics(const char letter);
+const char *albhed_to_phonetics(const char letter);
 /* Purpose: Translate an al bhed character to phonetics.
  * Pre-conditions: letter should be the letter to be translated.
  * Post-conditions: Returns a pointer to the corrosponding phonetic

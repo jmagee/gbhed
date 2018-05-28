@@ -205,8 +205,7 @@ static void print_gstring(GtkWidget *widget, gpointer *buffer) {
   gtk_text_buffer_get_bounds(GTK_TEXT_BUFFER(buffer), &begin, &end);
   mybuffer =
       gtk_text_buffer_get_text(GTK_TEXT_BUFFER(buffer), &begin, &end, TRUE);
-  g_print(mybuffer);
-  g_print("\n");
+  g_print("%s\n", mybuffer);
 }
 
 static char *get_gstring(gpointer buffer) {
@@ -329,7 +328,7 @@ static void about_message(GtkWidget *window) {
 
   fp = popen("abtranslate --version", "r");
   fgets(buf, 100, fp);
-  g_print(buf);
+  g_print("%s", buf);
   pclose(fp);
 
   sprintf(text, " Using: %s", buf);

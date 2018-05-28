@@ -42,11 +42,11 @@ char albhed_to_english(const char letter) {
   return (char)EOF;
 }
 
-char *albhed_to_phonetics(const char letter) {
+const char *albhed_to_phonetics(const char letter) {
   register int i;
   for (i = 0; i < MAX_CHARS; i++) {
     if (letter == tableAlbhed[i])
-      return (char *)tablePhonetics[i];
+      return tablePhonetics[i];
   }
   return NULL;
 }
