@@ -1,13 +1,13 @@
 gbhed
 -------------------------------------
-gBhed is a translator for the Al Bhed language found in several Final Fantasy Games.  Al Bhed is technically a cipher, and not a language, but it is generaly referred to as a language.  gBhed is not affiliated with Square Enix.
+gBhed is a translator for the Al Bhed language found in several Final Fantasy Games.  Al Bhed is technically a cipher, and not a language, but it is generally referred to as a language.  gBhed is not affiliated with Square Enix.
 
 
 BUILD:
 -------------------------------------
 Read the INSTALL file for detailed directions.
 
-Unpack gbhed (if you are reading this, you have allready completed this step).
+Unpack gbhed (if you are reading this, you have already completed this step).
 ./configure
 make
 su
@@ -24,15 +24,15 @@ You will need GTK-2.0 (as well as the devel files) in order to compile gbhed.  Y
 
 USAGE:
 -------------------------------------
-gBhed is actually a frotend for abtranslate.  You can call abtranslate directly if you prefer a CLI, or if you want to incorporate it with your own program/script/whatever.
+gBhed is actually a frontend for abtranslate.  You can call abtranslate directly if you prefer a CLI, or if you want to incorporate it with your own program/script/whatever.
 
-Translating is pretty straight forward.  Many word are NOT translated in Al Bhed, mostly proper nouns.  Anything placed between brackets [ and ] will NOT be translated.  The phonetic option is only a rough guideline, as there is no real agreement on the pronounciation (which isn't even consitent throughout the games).
+Translating is pretty straight forward.  Many word are NOT translated in Al Bhed, mostly proper nouns.  Anything placed between brackets [ and ] will NOT be translated.  The phonetic option is only a rough guideline, as there is no real agreement on the pronunciation (which isn't even consistent throughout the games).
 
 
 WHY:
 -------------------------------------
 You may be asking yourself, why?
-There are many Al Bhed translators out there, but none of them for linux (besides web based scripts and the like).
+There are many Al Bhed translators out there, but none of them for Linux (besides web based scripts and the like).
 
 Such translators can be used by people playing through FFX and FFX-2 (and potential future games that might involve the Al Bhed). 
 Also, many who attend cosplay conventions as Al Bhed characters will find a translator like this quite useful.
